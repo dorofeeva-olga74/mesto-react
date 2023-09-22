@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from "react";
-import api from "./Api/Api.js";
+import api from "../utils/Api/Api.js";
 import Card from "./Card";
 
 function Main(props) {
-    const { avatar, onEditProfile, onAddPlace, onEditAvatar,
+    const { onEditProfile, onAddPlace, onEditAvatar,
         onCardClick } = props;
     const [userName, setUserName] = useState("")
     const [userDescription, setUserDescription] = useState("")
@@ -38,17 +38,15 @@ function Main(props) {
             <section className="profile">
                 <div className="profile__group">
                     <div className="profile__avatar-set">
-                        <img onClick={onEditAvatar} className={"profile__avatar"} style={{ backgroundImage: `url(${userAvatar})`}} />
+                        <img onClick={onEditAvatar} className={"profile__avatar"} src={userAvatar} alt={"Аватарка"} />
                     </div>
                     <div className="profile__info">
                         <h1 className="profile__title">{userName}</h1>
-                        <button onClick={onEditProfile} id="open-popup-button" type="button" className="profile__button profile__button_add_change">
-                        </button>
+                        <button onClick={onEditProfile} id="open-popup-button" type="button" className="profile__button profile__button_add_change" />
                         <p className="profile__subtitle">{userDescription}</p>
                     </div>
                 </div>
-                <button onClick={onAddPlace} id="open-popup-button-add-card" type="button" className="profile__button profile__button_add_card">
-                </button>
+                <button onClick={onAddPlace} id="open-popup-button-add-card" type="button" className="profile__button profile__button_add_card" />
             </section>
             <section className="elements">
                 {cards.map((card) => (

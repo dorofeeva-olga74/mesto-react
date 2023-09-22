@@ -22,14 +22,7 @@ export class Api {
     return fetch(`${this._url}/cards`, { //возврат fetch всегда промис-/tasks
       headers: this._headers,
     }).then(this._getResponse);//response - ответ 
-    //console.log(response);       
-    /*.then(res => {
-      if (res.ok) {
-        return res.json();
-      }          
-    // если ошибка, отклоняем промис
-    return Promise.reject(`Ошибка: ${res.status}`);
-   });*/
+    //console.log(response);     
   }
   //удалить карточку
   deleteCardApi(id) {
