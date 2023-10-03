@@ -1,24 +1,19 @@
 import '../blocks/popup/_opened/popup_opened.css';
 import React from 'react';
 function PopupWithForm(props) {
-    const { children, name, title, isOpen,
-        onClose, buttonText = "Сохранить", type, } = props;
-    //закрытие по оверлею 
-    const handleOverlayClick = (e) => {
-        if (e.target?.className?.includes(name)) {
-            onClose();
-        }
-    };
+    const { children, name, title, isOpen, onSubmit, onUpdateUser, onUpdateAvatar, onAddPlace,
+        onClose, buttonText = "Сохранить", type, onCloseOverlay } = props;
+
     return (
         <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}
-            onClick={handleOverlayClick}>
+            onClick={onCloseOverlay}>
             <div className="popup__container">
-                <form action="#" name={`${name}`} className={`popup__form popup__${name}`}
-                   onClick={e => e.stopPropagation()}>{/*чтобы не закрывалось при клике на саму форму*/}
+                <form onSubmit={onSubmit} action="#" name={`${name}`} className={`popup__form popup__${name}`}
+                    onClick={e => e.stopPropagation()}>{/*чтобы не закрывалось при клике на саму форму*/}
                     <h2 className="popup__title">{title}</h2>
                     {children}
                     <button id={"save"} type={type} className={"popup__button"}
-                        disabled>{buttonText}</button>
+                    >{buttonText}</button>
                 </form>
                 <button id={"close-popup-button"} type={"button"} aria-label={"Закрыть"}
                     onClick={onClose} className={"popup__close-button"} />

@@ -5,7 +5,7 @@ export class Api {
   }
   //приватный метод ответа сервера
   _getResponse(response) {
-    //console.log(response);
+    //console.log(response)
     if (response.ok) {
       return response.json();//дай мне ответ в формате json()
     }
@@ -44,10 +44,12 @@ export class Api {
   getUserCardsData() {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
-    }).then(this._getResponse);//response - ответ             
+    }).then(this._getResponse);//response - ответ
+
   }
   //Метод находит id пользователя в хранилище
   // getCurrentUser() {
+  //   //console.log(res)
   //   this.getUserCardsData(_id)
   //     .then((response) => {
   //       localStorage.setItem('userId', response?._id);
@@ -56,6 +58,7 @@ export class Api {
   // }
   //отправка данных на сервер   
   changeUserData(data) {
+    //console.log(data)
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
       method: 'PATCH',
@@ -63,9 +66,9 @@ export class Api {
         name: data.name,
         about: data.about,
         avatar: data.avatar,
-      }),
+      })
     }).then(this._getResponse);
-  }
+  }  
   //отправка данных на сервер   
   changeAvatarUrl(data) {
     return fetch(`${this._url}/users/me/avatar`, {
@@ -76,7 +79,8 @@ export class Api {
   }
   //Метод  запроса последней версии лайка
   addLikeCardData(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
+    //console.log(card)
+    return fetch(`${this._url}/cards/${cardId}/likes`, {      
       headers: this._headers,
       method: 'PUT',
     }).then(this._getResponse);//response - ответ 
