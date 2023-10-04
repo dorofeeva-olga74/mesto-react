@@ -3,9 +3,8 @@ import CurrentUserContext from '../contexts/CurrentUserContext.js';
 import Card from "./Card";
 import CardsContext from '../contexts/CardsContext.js';
 
-function Main(props) {
-    const { onEditProfile, onAddPlace, onEditAvatar, onCardClick,
-        onCardLike, onCardDelete } = props;
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick,
+    onCardLike, onCardDelete, openDeletePopup, setSelectedCardToDeleteData }) {
     //подписка на контекст     
     const currentUser = React.useContext(CurrentUserContext);
     const cards = React.useContext(CardsContext);
@@ -36,6 +35,8 @@ function Main(props) {
                         onCardLike={onCardLike}
                         onCardDelete={onCardDelete}
                         onCardClick={onCardClick}
+                        openDeletePopup={openDeletePopup}
+                        setSelectedCardToDeleteData={(card) => setSelectedCardToDeleteData(card)}
                     >
                     </Card>
                 ))}

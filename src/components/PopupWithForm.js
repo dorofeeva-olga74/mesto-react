@@ -1,9 +1,8 @@
 import '../blocks/popup/_opened/popup_opened.css';
 import React from 'react';
-function PopupWithForm(props) {
-    const { children, name, title, isOpen, onSubmit, onUpdateUser, onUpdateAvatar, onAddPlace,
-        onClose, buttonText = "Сохранить", type, onCloseOverlay } = props;
 
+function PopupWithForm({ children, name, title, isOpen, onSubmit, onUpdateUser, onUpdateAvatar, onAddPlace,
+    onClose, buttonText, type, onCloseOverlay }) {
     return (
         <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}
             onClick={onCloseOverlay}>

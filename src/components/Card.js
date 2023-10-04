@@ -2,7 +2,7 @@ import React from "react";
 import CurrentUserContext from '../contexts/CurrentUserContext.js';
 
 export default function Card(card) {
-  const { name, link, likes, owner } = card;
+  const { name, link, likes, owner, openDeletePopup, setSelectedCardToDeleteData } = card;
   const currentUser = React.useContext(CurrentUserContext);
 
   // Определяем, являемся ли мы владельцем текущей карточки
@@ -18,8 +18,9 @@ export default function Card(card) {
   function handleLikeClick() {
     card.onCardLike(card)
   }
-  function handleDeleteClick() {
-    card.onCardDelete(card)
+  function handleDeletePopupClick() {
+    openDeletePopup();
+    setSelectedCardToDeleteData(card.cardData._id);
   }
 
   return (
@@ -29,7 +30,7 @@ export default function Card(card) {
           className={"element__delete"}
           type={"reset"}
           aria-label="Кнопка удалить карточку"
-          onClick={handleDeleteClick}
+          onClick={handleDeletePopupClick}
         />)}
       <button id={"show-image"} className={"element__show-img"} type={"button"} onClick={handleCardClick}>
         <img className={"element__img"} src={link} alt={name} />

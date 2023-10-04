@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import PopupWithForm from "./PopupWithForm";
 
 export default function AddPlacePopup(props) {
-  const { isOpen, onClose, onCloseOverlay, onAddNewPlace } = props;
-
+  const { isOpen, onClose, onCloseOverlay, onAddNewPlace, isLoading } = props;
   const [name, setCardName] = useState("");
   const [link, setCardLink] = useState("");
+
+  React.useEffect(() => {
+    setCardName('');
+    setCardLink('');
+  }, [isOpen]);
 
   function handleSubmit(e, name, link) {
     // Запрещаем браузеру переходить по адресу формы
@@ -17,7 +21,7 @@ export default function AddPlacePopup(props) {
     <PopupWithForm
       name={"add-place-form"}
       title={"Новое место"}
-      buttonText={"Сохранить"}
+      buttonText={isLoading ? "Сохранение..." : "Сохранить"}
       isOpen={isOpen}
       onClose={onClose}
       onCloseOverlay={onCloseOverlay}

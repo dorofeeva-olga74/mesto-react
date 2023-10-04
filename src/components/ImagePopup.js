@@ -1,7 +1,6 @@
 import React from 'react';
 
 function ImagePopup({ card, onClose, onCloseOverlay }) {
-
    return (
       <section id="picturePopup" className={`popup popup_img_open ${card.link ? "popup_opened" : ""}`}
          onClick={onCloseOverlay} aria-label="Фото полный размер">
