@@ -88,11 +88,12 @@ function App() {
       avatar: data.avatar,
     })
       .then(() => {
+        closeAllPopups();
         setCurrentUser((userInfoAnswer) => ({
           ...userInfoAnswer,
           avatar: data.avatar,
         }));
-        closeAllPopups();
+        
       })
       .catch((e) => console.error(e?.reason || e?.message))
       .finally(() => setIsLoading(false));
@@ -105,12 +106,13 @@ function App() {
       about: about,
     })
       .then(() => {
+        closeAllPopups();
         setCurrentUser((userInfoAnswer) => ({
           ...userInfoAnswer,
           name: name,
           about: about,
         }));
-        closeAllPopups();
+        
       })
       .catch((e) => console.error(e?.reason || e?.message))
       .finally(() => setIsLoading(false))
@@ -127,8 +129,8 @@ function App() {
       link: data.link,
     })
       .then((newCard) => {
-        setApiCardsState([newCard, ...apiCardsState]);
         closeAllPopups();
+        setApiCardsState([newCard, ...apiCardsState]);        
       })
       .catch((e) => console.error(e?.reason || e?.message))
       .finally(() => setIsLoading(false))
@@ -137,10 +139,11 @@ function App() {
   function handleCardDelete() {
     api.deleteCardApi(selectedCardToDelete)
       .then(() => {
+        closeAllPopups();
         setApiCardsState((state) => state.filter((cardDelete) => selectedCardToDelete !== cardDelete._id));
       })
       .catch((e) => console.error(e?.reason || e?.message))
-    closeAllPopups();
+    
   }
 
   function handleCardLike(card) {
